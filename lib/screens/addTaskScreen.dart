@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '/data/taskData.dart';
 
 class AddTaskScreen extends StatefulWidget {
   final Function addTaskCallBack;
@@ -57,7 +59,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               child: GestureDetector(
                 onTap: () {
                   if (newTaskTitle.length > 0) {
-                    widget. addTaskCallBack(newTaskTitle); 
+                    Provider.of<TaskData>(context , listen : false).addTask(newTaskTitle); 
                   }
 
                   Navigator.pop(context);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'data/taskData.dart';
 import 'screens/TasksScreen.dart';
-// ignore: prefer_const_constructors
+import 'package:provider/provider.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +12,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.indigo,
+    return ChangeNotifierProvider(
+      create : (context) => TaskData() ,
+      child: MaterialApp(
+        theme: ThemeData(
+          primaryColor: Colors.indigo,
+        ),
+        home: TasksScreen(),
       ),
-      home: TasksScreen(),
     );
   }
 }
