@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/data/taskData.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   final Function addTaskCallBack;
@@ -20,10 +21,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            const Text(
+            Text(
               "Add Task",
               style: TextStyle(
-                color: Colors.indigo,
+                color: Provider.of<TaskData>(context).mainColor,
                 fontSize: 24,
                 fontWeight: FontWeight.w400,
               ),
@@ -34,17 +35,21 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 onChanged: (value) {
                   newTaskTitle = value;
                 },
-                cursorColor: Colors.indigo,
+                cursorColor: Provider.of<TaskData>(context).mainColor,
                 cursorHeight: 26,
                 autofocus: true,
                 textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  fillColor: Colors.indigo,
+                decoration: InputDecoration(
+                  fillColor: Provider.of<TaskData>(context).mainColor,
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.indigo, width: 2),
+                    borderSide: BorderSide(
+                        color: Provider.of<TaskData>(context).mainColor!,
+                        width: 2),
                   ),
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.indigo, width: 1),
+                    borderSide: BorderSide(
+                        color: Provider.of<TaskData>(context).mainColor!,
+                        width: 1),
                   ),
                 ),
               ),
@@ -59,7 +64,8 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               child: GestureDetector(
                 onTap: () {
                   if (newTaskTitle.length > 0) {
-                    Provider.of<TaskData>(context , listen : false).addTask(newTaskTitle); 
+                    Provider.of<TaskData>(context, listen: false)
+                        .addTask(newTaskTitle);
                   }
 
                   Navigator.pop(context);
@@ -67,7 +73,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 child: Container(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 15,
-                  color: Colors.indigo,
+                  color: Provider.of<TaskData>(context).mainColor,
                   child: const Center(
                     child: Text(
                       "Add",

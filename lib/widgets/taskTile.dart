@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tododay/data/taskData.dart';
 
 class TaskTile extends StatelessWidget {
   final bool isChecked;
   final String taskTitle;
   final Function(bool?) checkBoxChange;
-  final Function listTileDelete; 
+  final Function listTileDelete;
   TaskTile({
     required this.isChecked,
     required this.taskTitle,
     required this.checkBoxChange,
-    required this.listTileDelete , 
+    required this.listTileDelete,
   });
 
   @override
@@ -18,7 +20,7 @@ class TaskTile extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: ListTile(
         onLongPress: () {
-          listTileDelete() ; 
+          listTileDelete();
         },
         title: Text(
           taskTitle,
@@ -27,7 +29,7 @@ class TaskTile extends StatelessWidget {
           ),
         ),
         trailing: Checkbox(
-          activeColor: Colors.indigo[400],
+          activeColor: Provider.of<TaskData>(context).mainColor,
           value: isChecked,
           // onChanged: changeCheckBox,
           onChanged: checkBoxChange,
